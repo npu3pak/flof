@@ -1,0 +1,40 @@
+services:
+  mobile-nexus:
+    image: sonatype/nexus3
+    ports:
+      - '8081:8081'
+    networks:
+        appnet:
+            ipv4_address: 172.16.0.2
+    volumes:
+      - ./nexus-data:/nexus-data
+    extra_hosts:
+        - "dl.google.com:64.233.165.190"
+        - "repo.maven.apache.org:146.75.116.216"
+        - "repo1.maven.org:146.75.116.209"
+        - "maven.google.com:173.194.220.113"
+        - "plugins.gradle.org:104.16.73.101"
+        - "developer.huawei.com:188.43.76.82"
+        - "jitpack.io:188.114.98.224"
+        - "artifactory-external.vkpartner.ru:95.213.31.200"
+        - "mvnrepository.com:188.114.98.224"
+        - "services.gradle.org:104.16.73.101"
+
+  mobile-nginx:
+    image: nginx
+    ports:
+      - '443:443'
+    volumes:
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+        appnet:
+            ipv4_address: 172.16.0.3
+
+networks:
+  appnet:
+    driver: bridge
+    ipam:
+        driver: default
+        config:
+            - subnet: "172.16.0.0/28"
