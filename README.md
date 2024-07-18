@@ -37,6 +37,7 @@
 |mobile-artifactory-external-vkpartner-ru| https://artifactory-external.vkpartner.ru|
 |mobile-mvnrepository-com                | https://mvnrepository.com                |
 |mobile-services-gradle-org              | https://services.gradle.org              |
+|mobile-repo-gradle-org                  | https://repo.gradle.org                  |
 
 ## Настройка клиента
 1. Добавить в hosts настройку для указанных хостов на IP-адрес сервера.
