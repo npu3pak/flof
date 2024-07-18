@@ -46,7 +46,7 @@
 1. Скопировать содержимое папки gradle в <домашний каталог>/.gradle
 2. Добавить в hosts настройку для указанных хостов на IP-адрес сервера.
 Пример для localhost:
-`
+```
 127.0.0.1   dl.google.com
 127.0.0.1   repo.maven.apache.org
 127.0.0.1   repo1.maven.org
@@ -57,7 +57,7 @@
 127.0.0.1   artifactory-external.vkpartner.ru
 127.0.0.1   mvnrepository.com
 127.0.0.1   services.gradle.org
-`
+```
 3. Сбросить кэш dns:
 - Для macOS: `sudo killall -HUP mDNSResponder`
 - Для linux: `sudo /etc/init.d/dns-clean restart && /etc/init.d/networking force-reload`
