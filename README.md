@@ -13,14 +13,14 @@
 
 ## Повторная настройка проекта
 Сейчас в репозиторий уже включены заранее сгенерированные сертификаты и конфиг nginx.
-Если требуется, повторную генерацию можно выполнить самостоятельно скриптом `setup_project.sh`
+Если требуется, повторную генерацию можно выполнить самостоятельно скриптом ```setup_project.sh```
 
 ## Запуск сервера
 1. Устанавливаем Docker и Docker Compose (входит в Docker Desktop)
-2. В корне проекта запускаем `docker compose up`
+2. В корне проекта запускаем ```docker compose up```
 
 ## Настройка Nexus
-1. Открыть Nexus. Для localhost: http://localhost:8081
+1. Открыть Nexus. Для localhost: ```http://localhost:8081```
 2. Зайти от админа. Временный пароль будет сгенерирован в ./nexus-data/admin.password.
 3. Добавить репозитории типа *raw (proxy)*
 *Совет:* Пепед сохранением репозиториев рекомендуется нажимать кнопку View certificate, чтобы проверить доступность сервера. Если сертификат не скачивается - надо или обновить таблицу IP в extra_hosts в compose.yaml или убедиться что имя и url введены правильно (без пробелов в конце и т.п.)
@@ -39,8 +39,8 @@
 |mobile-services-gradle-org              | https://services.gradle.org              |
 
 ## Настройка клиента
-### Для Linux/macOS можно выполнить `sudo ./setup_client.sh`
-Предварительно можно настроить параметр скрипта `SERVER_IP`
+### Для Linux/macOS можно выполнить ```sudo ./setup_client.sh```
+Предварительно можно настроить параметр скрипта SERVER_IP
 
 ### Для Windows / ручная настройка:
 1. Скопировать содержимое папки gradle в <домашний каталог>/.gradle
@@ -59,11 +59,11 @@
 127.0.0.1   services.gradle.org
 ```
 3. Сбросить кэш dns:
-- Для macOS: `sudo killall -HUP mDNSResponder`
-- Для linux: `sudo /etc/init.d/dns-clean restart && /etc/init.d/networking force-reload`
+- Для macOS: ```sudo killall -HUP mDNSResponder```
+- Для linux: ```sudo /etc/init.d/dns-clean restart && /etc/init.d/networking force-reload```
 - Для windows: перезагрузить компьютер
 
 ## Быстрая проверка
-1. Выполнить `curl -k https://dl.google.com/android/repository/repository2-3.xml`
-2. Открыть Nexus. Для localhost: http://localhost:8081
+1. Выполнить ```curl -k https://dl.google.com/android/repository/repository2-3.xml```
+2. Открыть Nexus. Для localhost: ```http://localhost:8081```
 3. Убедиться, что в репозитории mobile-dl-google-com появился указанный файл
