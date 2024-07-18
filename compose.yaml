@@ -8,6 +8,9 @@ services:
             ipv4_address: 172.16.0.2
     volumes:
       - ./nexus-data:/nexus-data
+    # Можно закомментировать extra_hosts если сборка выполняется не на той же машине которая хостит docker
+    # Если не переопределить hosts, то будет использоваться hosts хоста докера, так что nexus будет пытаться скачать недостающие файлы с localhost
+    # IP получал с помощью nslookup
     extra_hosts:
         - "dl.google.com:64.233.165.190"
         - "repo.maven.apache.org:146.75.116.216"
