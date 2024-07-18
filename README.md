@@ -60,7 +60,7 @@
 - Для linux: ```sudo /etc/init.d/dns-clean restart && /etc/init.d/networking force-reload```
 - Для windows: перезагрузить компьютер
 
-4. Настроить trusted store в глобальном конфиге gradle
+4. Настроить trusted store в глобальном конфиге gradle (пример: gradle/gradle.properties)
 - Открыть скопировать файл из каталога gradle/gradle-truststore.jks в любой каталог системы
 - В домашнем каталоге в каталоге .gradle создать файл gradle.properties
 - Дописать в него путь и пароль к хранилищу:
@@ -69,6 +69,9 @@ systemProp.javax.net.ssl.trustStore=/full/path/to/gradle-truststore.jks
 systemProp.javax.net.ssl.trustStorePassword=1q2w3e
 ```
 - Перезагрузить gradle/компьютер, т.к. gradle может игнорировать изменение настроек
+
+## Автоматическая настройка клиента
+На Linux/macOS можно использовать скрипт ```./setup_client.sh```
 
 ## Быстрая проверка
 1. Выполнить ```curl -k https://dl.google.com/android/repository/repository2-3.xml```

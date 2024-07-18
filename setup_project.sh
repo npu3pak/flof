@@ -1,9 +1,7 @@
 #!/bin/bash
 GRADLE_TRUSTSTORE_PASSWORD=1q2w3e
 GRADLE_TEMP_DIR=./gradle
-GRADLE_TRUSTSTORE_FILE_NAME="gradle-truststore.jks"
-# GRADLE_TRUSTSTORE_PATH="$GRADLE_TEMP_DIR/$GRADLE_TRUSTSTORE_FILE_NAME"
-GRADLE_TRUSTSTORE_PATH=~/gradle-truststore.jks
+GRADLE_TRUSTSTORE_PATH="$GRADLE_TEMP_DIR/gradle-truststore.jks"
 GRADLE_PROPERTIES_PATH="$GRADLE_TEMP_DIR/gradle.properties"
 NGINX_CERTS_PATH=./nginx/certs
 NGINX_CONFIG_PATH=./nginx/nginx.conf
@@ -94,13 +92,12 @@ function main {
     # просмотр всех сертификатов в truststore
     keytool -list -keystore ${GRADLE_TRUSTSTORE_PATH} -storepass ${GRADLE_TRUSTSTORE_PASSWORD}
 
-
     # генерация nginx конфига
     generate_nginx_config
 
     echo "Создаем пример конфига gradle"
     rm $GRADLE_PROPERTIES_PATH 2> /dev/null
-    echo "systemProp.javax.net.ssl.trustStore=${GRADLE_TRUSTSTORE_PATH}" >> $GRADLE_PROPERTIES_PATH
+    echo "systemProp.javax.net.ssl.trustStore=/full/path/to/gradle-truststore.jks" >> $GRADLE_PROPERTIES_PATH
     echo "systemProp.javax.net.ssl.trustStorePassword=${GRADLE_TRUSTSTORE_PASSWORD}" >> $GRADLE_PROPERTIES_PATH
 }
 
