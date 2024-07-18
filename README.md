@@ -39,8 +39,7 @@
 |mobile-services-gradle-org              | https://services.gradle.org              |
 
 ## Настройка клиента
-1. Скопировать содержимое папки gradle в <домашний каталог>/.gradle
-2. Добавить в hosts настройку для указанных хостов на IP-адрес сервера.
+1. Добавить в hosts настройку для указанных хостов на IP-адрес сервера.
 Пример для localhost:
 ```
 127.0.0.1   dl.google.com
@@ -55,19 +54,20 @@
 127.0.0.1   services.gradle.org
 127.0.0.1   repo.gradle.org
 ```
-3. Сбросить кэш dns:
+2. Сбросить кэш dns:
 - Для macOS: ```sudo killall -HUP mDNSResponder```
 - Для linux: ```sudo /etc/init.d/dns-clean restart && /etc/init.d/networking force-reload```
 - Для windows: перезагрузить компьютер
 
-4. Настроить trusted store в глобальном конфиге gradle (пример: gradle/gradle.properties)
-- Открыть скопировать файл из каталога gradle/gradle-truststore.jks в любой каталог системы
+3. Настроить trusted store в глобальном конфиге gradle
+- Скопировать файл gradle/gradle-truststore.jks в любой каталог системы
 - В домашнем каталоге в каталоге .gradle создать файл gradle.properties
 - Дописать в него путь и пароль к хранилищу:
 ```
 systemProp.javax.net.ssl.trustStore=/full/path/to/gradle-truststore.jks
 systemProp.javax.net.ssl.trustStorePassword=1q2w3e
 ```
+Пример конфига: gradle/gradle.properties
 - Перезагрузить gradle/компьютер, т.к. gradle может игнорировать изменение настроек
 
 ## Автоматическая настройка клиента
