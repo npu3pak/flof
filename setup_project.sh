@@ -2,7 +2,8 @@
 GRADLE_TRUSTSTORE_PASSWORD=1q2w3e
 GRADLE_TEMP_DIR=./gradle
 GRADLE_TRUSTSTORE_FILE_NAME="gradle-truststore.jks"
-GRADLE_TRUSTSTORE_PATH="$GRADLE_TEMP_DIR/$GRADLE_TRUSTSTORE_FILE_NAME"
+# GRADLE_TRUSTSTORE_PATH="$GRADLE_TEMP_DIR/$GRADLE_TRUSTSTORE_FILE_NAME"
+GRADLE_TRUSTSTORE_PATH=~/gradle-truststore.jks
 GRADLE_PROPERTIES_PATH="$GRADLE_TEMP_DIR/gradle.properties"
 NGINX_CERTS_PATH=./nginx/certs
 NGINX_CONFIG_PATH=./nginx/nginx.conf
@@ -20,6 +21,7 @@ hosts=(
     artifactory-external.vkpartner.ru
     mvnrepository.com
     services.gradle.org
+    repo.gradle.org
 )
 
 function create_self_signed_cert() {
@@ -98,7 +100,7 @@ function main {
 
     echo "Создаем пример конфига gradle"
     rm $GRADLE_PROPERTIES_PATH 2> /dev/null
-    echo "systemProp.javax.net.ssl.trustStore=${GRADLE_TRUSTSTORE_FILE_NAME}" >> $GRADLE_PROPERTIES_PATH
+    echo "systemProp.javax.net.ssl.trustStore=${GRADLE_TRUSTSTORE_PATH}" >> $GRADLE_PROPERTIES_PATH
     echo "systemProp.javax.net.ssl.trustStorePassword=${GRADLE_TRUSTSTORE_PASSWORD}" >> $GRADLE_PROPERTIES_PATH
 }
 

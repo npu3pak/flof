@@ -23,7 +23,7 @@
 1. Открыть Nexus. Для localhost: ```http://localhost:8081```
 2. Зайти от админа. Временный пароль будет сгенерирован в ./nexus-data/admin.password.
 3. Добавить репозитории типа *raw (proxy)*
-*Совет:* Пепед сохранением репозиториев рекомендуется нажимать кнопку View certificate, чтобы проверить доступность сервера. Если сертификат не скачивается - надо или обновить таблицу IP в extra_hosts в compose.yaml или убедиться что имя и url введены правильно (без пробелов в конце и т.п.)
+*Совет:* Пепед сохранением репозиториев рекомендуется нажимать кнопку View certificate, чтобы проверить доступность сервера. Если сертификат не скачивается или ненадежен, то надо или обновить таблицу IP в extra_hosts в compose.yaml или убедиться что имя и url введены правильно (без пробелов в конце и т.п.)
 
 |Имя репозитория                         | Remote storage                           |
 |----------------------------------------|------------------------------------------|
@@ -39,10 +39,6 @@
 |mobile-services-gradle-org              | https://services.gradle.org              |
 
 ## Настройка клиента
-### Для Linux/macOS можно выполнить ```sudo ./setup_client.sh```
-Предварительно можно настроить параметр скрипта SERVER_IP
-
-### Для Windows / ручная настройка:
 1. Скопировать содержимое папки gradle в <домашний каталог>/.gradle
 2. Добавить в hosts настройку для указанных хостов на IP-адрес сервера.
 Пример для localhost:
@@ -57,13 +53,30 @@
 127.0.0.1   artifactory-external.vkpartner.ru
 127.0.0.1   mvnrepository.com
 127.0.0.1   services.gradle.org
+127.0.0.1   repo.gradle.org
 ```
 3. Сбросить кэш dns:
 - Для macOS: ```sudo killall -HUP mDNSResponder```
 - Для linux: ```sudo /etc/init.d/dns-clean restart && /etc/init.d/networking force-reload```
 - Для windows: перезагрузить компьютер
 
+4. Настроить trusted store в глобальном конфиге gradle
+- Открыть скопировать файл из каталога gradle/gradle-truststore.jks в любой каталог системы
+- В домашнем каталоге в каталоге .gradle создать файл gradle.properties
+- Дописать в него путь и пароль к хранилищу:
+```
+systemProp.javax.net.ssl.trustStore=/full/path/to/gradle-truststore.jks
+systemProp.javax.net.ssl.trustStorePassword=1q2w3e
+```
+- Перезагрузить gradle/компьютер, т.к. gradle может игнорировать изменение настроек
+
 ## Быстрая проверка
 1. Выполнить ```curl -k https://dl.google.com/android/repository/repository2-3.xml```
 2. Открыть Nexus. Для localhost: ```http://localhost:8081```
 3. Убедиться, что в репозитории mobile-dl-google-com появился указанный файл
+
+# Ошибки
+### Не скачивается зависимость
+1. Проверить что она доступна без изменения hosts, убедиться что файл действительно должен быть в указанном репозитории
+2. Убедиться, что IP для хоста в compose.yaml указан верно и не устарел
+3. Проверить наличие ошибок для репозитория в nexus

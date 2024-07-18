@@ -13,7 +13,7 @@ services:
     # IP получал с помощью nslookup
     extra_hosts:
         - "dl.google.com:64.233.165.190"
-        - "repo.maven.apache.org:146.75.116.216"
+        - "repo.maven.apache.org:146.75.116.215"
         - "repo1.maven.org:146.75.116.209"
         - "maven.google.com:173.194.220.113"
         - "plugins.gradle.org:104.16.73.101"
@@ -22,6 +22,7 @@ services:
         - "artifactory-external.vkpartner.ru:95.213.31.200"
         - "mvnrepository.com:188.114.98.224"
         - "services.gradle.org:104.16.73.101"
+        - "repo.gradle.org:104.16.73.101"
 
   mobile-nginx:
     image: nginx
