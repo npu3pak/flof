@@ -8,6 +8,8 @@ services:
             ipv4_address: 172.16.0.2
     volumes:
       - ./nexus-data:/nexus-data
+      # Подключаем плагин для dart
+      - ./nexus-plugins/nexus-repository-dart-2.0.0-SNAPSHOT-bundle.kar:/opt/sonatype/nexus/deploy/nexus-repository-dart-2.0.0-SNAPSHOT-bundle.kar
     # Можно закомментировать extra_hosts если сборка выполняется не на той же машине которая хостит docker
     # Если не переопределить hosts, то будет использоваться hosts хоста докера, так что nexus будет пытаться скачать недостающие файлы с localhost
     # IP получал с помощью nslookup
