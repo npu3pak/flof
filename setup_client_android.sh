@@ -20,6 +20,8 @@ hosts=(
     artifactory-external.vkpartner.ru
     mvnrepository.com
     services.gradle.org
+    repo.gradle.org
+    jcenter.bintray.com
 )
 
 function bind_to_localhost() {

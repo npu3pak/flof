@@ -25,6 +25,7 @@ services:
         - "mvnrepository.com:188.114.98.224"
         - "services.gradle.org:104.16.73.101"
         - "repo.gradle.org:104.16.73.101"
+        - "jcenter.bintray.com:34.95.74.180"
 
   mobile-nginx:
     image: nginx

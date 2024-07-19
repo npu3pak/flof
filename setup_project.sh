@@ -20,6 +20,7 @@ hosts=(
     mvnrepository.com
     services.gradle.org
     repo.gradle.org
+    jcenter.bintray.com
 )
 
 function create_self_signed_cert() {

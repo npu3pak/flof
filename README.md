@@ -38,6 +38,7 @@
 |raw (proxy)    |mobile-mvnrepository-com                |https://mvnrepository.com                |
 |raw (proxy)    |mobile-services-gradle-org              |https://services.gradle.org              |
 |raw (proxy)    |mobile-repo-gradle-org                  |https://repo.gradle.org                  |
+|raw (proxy)    |mobile-jcenter-bintray-com              |https://jcenter.bintray.com              |
 
 ## Настройка клиента
 1. Добавить в hosts-файл машины разработчика для указанных доменов привязку к IP-адресу хоста nexus.
@@ -54,6 +55,7 @@
 127.0.0.1   mvnrepository.com
 127.0.0.1   services.gradle.org
 127.0.0.1   repo.gradle.org
+127.0.0.1   jcenter.bintray.com
 ```
 2. Сбросить кэш dns:
 - Для macOS: ```sudo killall -HUP mDNSResponder```
