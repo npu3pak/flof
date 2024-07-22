@@ -1,0 +1,10 @@
+services:
+  mobile-gitlab:
+    image: gitlab/gitlab-ce
+    ports:
+      - '8082:80'
+    volumes:
+      - './gitlab/config:/etc/gitlab'
+      - './gitlab/logs:/var/log/gitlab'
+      - './gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'

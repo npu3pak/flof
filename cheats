@@ -1,0 +1,26 @@
+FLUTTER_STORAGE_BASE_URL
+http://127.0.0.1:8081/repository/mobile-fvm-proxy
+https://storage.googleapis.com
+
+https://pub.dev/api/packages/archive/advisories
+https://storage.googleapis.com/api/packages/archive/advisories
+
+https://pub.dev/flutter_infra_release/flutter/f6344b75dcf861d8bf1f1322780b8811f982e31a/dart-sdk-darwin-arm64.zip
+
+http://127.0.0.1:8081/repository/mobile-fvm-proxy/api/packages/archive/advisories
+
+
+export FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy"
+export FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy"
+
+
+http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy/api/packages/archive/advisories
+
+
+http://127.0.0.1:8081/repository/mobile-github-raw-proxy/flutter/flutter.git
+https://github.com/flutter/flutter.git
+
+
+Gitlab Access: root/NotForProductUsage1
+
+FVM_FLUTTER_URL=http://127.0.0.1:8082/root/flutter.git

@@ -11,9 +11,9 @@
 
 Это гарантирует, что все запросы, даже те которые выполняются для транзитивных зависимостей и компонентов Android SDK (в том числе SDK Manager) будут перехвачены и оставят артефакты в Nexus.
 
-## Повторная настройка проекта
-Сейчас в репозиторий уже включены заранее сгенерированные сертификаты и конфиг nginx.
-Если требуется, повторную генерацию сертификатов и конфига можно выполнить самостоятельно скриптом ```setup_project.sh```
+## Настройка проекта
+Перед началом работы нужно сгенерировать конфиг nginx и сертификаты для перехвата ssl-запросов.
+Для этого нужно выполнить скрипт ```setup_project.sh```
 
 ## Запуск сервера
 1. Устанавливаем Docker и Docker Compose (входят в Docker Desktop)
@@ -86,6 +86,7 @@ systemProp.javax.net.ssl.trustStorePassword=1q2w3e
 1. Проверить что она доступна без изменения hosts-файла, т.е. убедиться что файл действительно должен быть в указанном репозитории
 2. Открыть compose.yaml, найти запись в extra_hosts для сервиса mobile-nexus. Убедиться, что IP указан верно и не устарел. Можно проверить через ```nslookup <ip>```
 3. Проверить наличие ошибок для соответствующего репозитория в nexus
+4. Попробовать повторно настроить проект ```./setup_project.sh```
 
 # Настройка для Flutter
 *Внимание!* Перед настройкой для Flutter нужно провести и отладить настройку для Android.
@@ -97,16 +98,17 @@ systemProp.javax.net.ssl.trustStorePassword=1q2w3e
 2. Зайти от админа
 3. Создать указанные репозитории
 
-|Тип репозитория|Имя репозитория                    | Remote storage            |
-|---------------|-----------------------------------|---------------------------|           
-|dart (proxy)   |mobile-dart-proxy                  | https://pub.dev           |
-|maven2 (proxy) |mobile-download-flutter-maven-proxy| http://download.flutter.io|
+|Тип репозитория|Имя репозитория                    | Remote storage              |
+|---------------|-----------------------------------|-----------------------------|           
+|dart (proxy)   |mobile-dart-proxy                  |https://pub.dev              |
+|raw (proxy)    |mobile-flutter-storage-proxy       |https://storage.flutter-io.cn|
+|maven2 (proxy) |mobile-download-flutter-maven-proxy|http://download.flutter.io   |
 
 ## Настройка клиента для Flutter
 1. Прописать переменные окружения *PUB_HOSTED_URL* и *FLUTTER_STORAGE_BASE_URL* с указанием на mobile-dart-proxy, например в bashrc/zshrc добавить:
 ```
 export PUB_HOSTED_URL="http://127.0.0.1:8081/repository/mobile-dart-proxy"
-export FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-dart-proxy"
+export FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy"
 ```
 2. В проекте в файле android/build.gradle добавить в allprojects ссылку на mobile-download-flutter-maven-proxy
 ```
@@ -125,3 +127,33 @@ allprojects {
 ### Не скачиваются артефакты
 1. Попробовать почистить каталог $HOME/.gradle. Файлы gradle-truststore.jks и gradle.properties удалять не нужно.
 2. Попробовать после чистки переоткрыть IDE, завершить процессы gradle или перезагрузить компьютер
+
+# Автономная работа FVM
+## Установка
+Описание не готово
+
+## Настройка git-репозитория
+Для работы FVM при установке новых версий Flutter потребуется указать собственный git-репозиторий Flutter.
+1. Если ваша организация работает с gitlab или аналогичным репозиторием, можно клонировать репозиторий https://github.com/flutter/flutter.git в git-репозиторий вашей организации.
+2. Если вы работаете один или вам нужен офлайн-сетап, вы можете поднять свой локальный gitlab и клонировать репозиторий https://github.com/flutter/flutter.git в него
+
+
+## Настройка локального git-репозитория
+1. Перейти в каталог fvm
+2. Выполнить ```docker compose up```
+3. Дождаться запуска gitlab: ```http://localhost:8082```
+4. Войти под учетной записью root, пароль fvm/gitlab/config/initial_root_password. 
+5. Смените пароль root: ```http://localhost:8082/-/user_settings/password/edit```
+6. Перейдите в ```http://localhost:8082/admin/application_settings/general```, найдите секцию *Import and export settings* и включите *Repository by URL*, сохраните изменения кнопкой *Save changes*
+7. Перейдите в ```http://localhost:8082/projects/new#import_project``` и импортируйте ```https://github.com/flutter/flutter.git``` как public-репозиторий
+
+## Настройка FVM на клиенте
+Добавьте глобальную переменную *FVM_FLUTTER_URL* с указанием вашего git-репозитория
+```
+export FVM_FLUTTER_URL=http://127.0.0.1:8082/path/to/flutter.git
+```
+
+Убедитесь, что установлена переменная окружения FLUTTER_STORAGE_BASE_URL
+```
+export FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy"
+```
