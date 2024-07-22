@@ -20,7 +20,7 @@
 2. В корне проекта запускаем ```docker compose up```
 
 ## Настройка Nexus
-1. Открыть Nexus. Для localhost: ```http://localhost:8081```
+1. Открыть Nexus. Для localhost: http://localhost:8081
 2. Зайти от админа. Временный пароль будет сгенерирован в ./nexus-data/admin.password.
 3. Добавить указанные репозитории
 *Совет:* Пепед сохранением репозиториев рекомендуется нажимать кнопку View certificate, чтобы проверить доступность сервера. Если сертификат не скачивается или ненадежен, то надо или обновить таблицу IP в extra_hosts в compose.yaml или убедиться что имя и url введены правильно (без пробелов в конце и т.п.)
@@ -78,7 +78,7 @@ systemProp.javax.net.ssl.trustStorePassword=1q2w3e
 
 ## Быстрая проверка
 1. Выполнить ```curl -k https://dl.google.com/android/repository/repository2-3.xml```
-2. Открыть Nexus. Для localhost: ```http://localhost:8081```
+2. Открыть Nexus. Для localhost: http://localhost:8081
 3. Убедиться, что в репозитории mobile-dl-google-com появился указанный файл
 
 ## Ошибки
@@ -94,7 +94,7 @@ systemProp.javax.net.ssl.trustStorePassword=1q2w3e
 Для автономной работы Flutter требуется подключить dart proxy, для этого используется самописный плагин https://github.com/npu3pak/nexus-repository-dart-2024. Это форк проекта https://github.com/groupe-edf/nexus-repository-dart, который в данный момент нормально работает с pub.dev в режиме proxy, работа других режимов не проверялась. Скомпилированный плагин уже включен в данный репозиторий.
 
 ## Настройка сервера для Flutter
-1. Открыть Nexus. Для localhost: ```http://localhost:8081```
+1. Открыть Nexus. Для localhost: http://localhost:8081
 2. Зайти от админа
 3. Создать указанные репозитории
 
@@ -141,11 +141,11 @@ allprojects {
 ## Настройка локального git-репозитория
 1. Перейти в каталог fvm
 2. Выполнить ```docker compose up```
-3. Дождаться запуска gitlab: ```http://localhost:8082```
+3. Дождаться запуска gitlab: http://localhost:8082
 4. Войти под учетной записью root, пароль fvm/gitlab/config/initial_root_password. 
-5. Смените пароль root: ```http://localhost:8082/-/user_settings/password/edit```
-6. Перейдите в ```http://localhost:8082/admin/application_settings/general```, найдите секцию *Import and export settings* и включите *Repository by URL*, сохраните изменения кнопкой *Save changes*
-7. Перейдите в ```http://localhost:8082/projects/new#import_project``` и импортируйте ```https://github.com/flutter/flutter.git``` как public-репозиторий
+5. Смените пароль root: http://localhost:8082/-/user_settings/password/edit
+6. Перейдите в http://localhost:8082/admin/application_settings/general, найдите секцию *Import and export settings* и включите *Repository by URL*, сохраните изменения кнопкой *Save changes*
+7. Перейдите в http://localhost:8082/projects/new#import_project и импортируйте https://github.com/flutter/flutter.git как public-репозиторий
 
 ## Настройка FVM на клиенте
 Добавьте глобальную переменную *FVM_FLUTTER_URL* с указанием вашего git-репозитория
