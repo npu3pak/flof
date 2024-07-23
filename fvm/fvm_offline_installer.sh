@@ -81,7 +81,7 @@ fi
 
 # Extract binary to the new location
 # if ! tar xzf fvm.tar.gz -C "$FVM_DIR" 2>&1; then
-if ! tar $INSTALLER_NAME -C "$FVM_DIR" 2>&1; then
+if ! tar xzf $INSTALLER_NAME -C "$FVM_DIR" 2>&1; then
     error "Extraction failed. Check permissions and tar.gz file integrity."
 fi
 
