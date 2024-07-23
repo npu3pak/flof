@@ -181,3 +181,86 @@ export FVM_FLUTTER_URL=http://127.0.0.1:8082/path/to/flutter.git
 ```
 export FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy"
 ```
+
+# Автономная установка и настройка Flutter на клиенте с Windows
+## Настройка hosts
+1. Дописать в файл C:\Windows\System32\drivers\etc\hosts привязку указанных хостов к IP сервера nginx+nexus. Пример для localhost:
+```
+127.0.0.1   dl.google.com
+127.0.0.1   repo.maven.apache.org
+127.0.0.1   repo1.maven.org
+127.0.0.1   maven.google.com
+127.0.0.1   plugins.gradle.org
+127.0.0.1   developer.huawei.com
+127.0.0.1   jitpack.io
+127.0.0.1   artifactory-external.vkpartner.ru
+127.0.0.1   mvnrepository.com
+127.0.0.1   services.gradle.org
+127.0.0.1   repo.gradle.org
+127.0.0.1   jcenter.bintray.com
+```
+2. Перезагрузить компьютер
+
+## Установить Android Studio
+Скачать и установить Android Studio https://developer.android.com/studio
+- При установке нужно запомнить каталог с Android SDK
+- Будут предупреждения о том, что используется недоверенное HTTPS-соединение, на все предупреждения нужно отвечать Accept
+- Из-за того что часть артефактов может отсутствовать в nexus, могут быть таймауты ожидания ответа сервера, в этом случае нужно просто повторять попытку
+
+## Установка и настройка FVM
+1. Скачать fvm для Windows https://github.com/leoafarias/fvm/releases
+2. Разархивировать, сохранить путь к каталогу fvm
+3. В каталоге с fvm рядом с файлом fvm.bat сделать текстовый файл fvm без расширения,  
+в который нужно вставить и отрадактировать следующее содержимое:
+```
+#!/bin/bash
+# Нужно указать свой путь к каталогу fvm, например /c/tools/fvm/
+/drive_letter/path/to/fvm/fvm.bat $@
+```
+4. В домашнем каталоге пользователя создать файл .bashrc 
+в который нужно вставить и отрадактировать указанные переменные:
+```
+# Нужно указать путь fvm, например /c/tools/fvm/fvm.bat $@
+export PATH="$PATH":"/drive_letter/path/to/fvm/"
+# Нужно указать путь к каталогу fvm/default/bin в домашнем каталоге. 
+# Этот каталог будет создан при установке глобальной версии flutter.
+export PATH="$PATH":"/c/Users/<имя пользователя>/fvm/default/bin"
+# Указываются пути к репозиториям в Nexus
+export PUB_HOSTED_URL="http://127.0.0.1:8081/repository/mobile-dart-proxy"
+export FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy"
+# Для автономной установки нужно указать одинаковый путь к репозиторию flutter в двух переменных
+export FVM_FLUTTER_URL=http://127.0.0.1:8082/root/flutter.git
+export FLUTTER_GIT_URL=http://127.0.0.1:8082/root/flutter.git 
+```
+5. В настройках Windows добавить те же самые переменные окружения, что и в файле .bashrc,
+но нужно использовать пути не в стиле Unix а в стиле Windows, например вместо /c/Users/... использовать c:\Users...
+```
+PUB_HOSTED_URL="http://127.0.0.1:8081/repository/mobile-dart-proxy"
+FLUTTER_STORAGE_BASE_URL="http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy"
+# Для автономной установки нужно указать одинаковый путь к репозиторию flutter в двух переменных
+FVM_FLUTTER_URL=http://127.0.0.1:8082/root/flutter.git
+FLUTTER_GIT_URL=http://127.0.0.1:8082/root/flutter.git 
+```
+Также нужно в PATH-переменную добавить каталоги C:\Users\<имя пользователя>\fvm\default\bin и каталог с fvm из шага 2.
+6. Открыть git bash и cmd и убедиться, что в них доступна команда fvm
+
+## Установка глобальной версии flutter
+1. После настройки fvm нужно выполнить команду ```fvm global <версия flutter>```
+2. Если будет ошибка, что у текущего пользователя недостаточно прав, повторно открыть консоль с правами администратора и повторить попытку
+3. Выполнить команду flutter config --android-sdk <каталог с Android SDK>
+4. Выполнить команду flutter doctor и следовать рекомендациям, если будут найдены проблемы, связанные с Android-разработкой
+
+## Настройка проекта
+В проекте в файле android/build.gradle добавить в allprojects ссылку на mobile-download-flutter-maven-proxy
+```
+allprojects {
+    repositories {
+        ...
+        maven {
+            url 'http://127.0.0.1:8081/repository/mobile-download-flutter-maven-proxy/'
+            allowInsecureProtocol = true
+        }
+        ...
+    }
+}
+```
