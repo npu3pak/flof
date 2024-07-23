@@ -124,6 +124,18 @@ allprojects {
     }
 }
 ```
+3. В директории flutter на компьютере в каталоге packages/flutter_tools/gradle/src/main/groovy в файле flutter.groovy добавить allowInsecureProtocol = true для maven в разделе ` Configure the Maven repository` (строки 249-260), должно получиться так:
+```
+rootProject.allprojects {
+            repositories {
+                maven {
+                    url(repository)
+                    allowInsecureProtocol = true
+                }
+            }
+}
+```
+
 ## Проблемы
 ### Не скачиваются артефакты
 1. Попробовать почистить каталог $HOME/.gradle. Файлы gradle-truststore.jks и gradle.properties удалять не нужно.
