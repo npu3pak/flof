@@ -124,7 +124,20 @@ allprojects {
     }
 }
 ```
-3. В директории flutter на компьютере в каталоге packages/flutter_tools/gradle/src/main/groovy в файле flutter.groovy добавить allowInsecureProtocol = true для maven в разделе ` Configure the Maven repository` (строки 249-260), должно получиться так:
+
+## Проблемы
+### Не скачиваются артефакты
+1. Попробовать почистить каталог $HOME/.gradle. Файлы gradle-truststore.jks и gradle.properties удалять не нужно.
+2. Попробовать после чистки переоткрыть IDE, завершить процессы gradle или перезагрузить компьютер
+
+### Не переопределяется maven url
+При запуске или сборке android приложения появилась похожая ошибка:
+```
+ Using insecure protocols with repositories, without explicit opt-in, is unsupported. Switch Maven repository 'maven2(http://127.0.0.1:8081/repository/mobile-flutter-storage-proxy/download.flutter.io)' to redirect to a secure protocol (like HTTPS) or allow insecure protocols.
+ ```
+ При этом `flutter pub get` отрабатывает корректно. 
+
+ 1. В директории flutter на компьютере в каталоге packages/flutter_tools/gradle/src/main/groovy в файле flutter.groovy добавить allowInsecureProtocol = true для maven в разделе ` Configure the Maven repository` (строки 249-260), должно получиться так:
 ```
 rootProject.allprojects {
             repositories {
@@ -135,11 +148,6 @@ rootProject.allprojects {
             }
 }
 ```
-
-## Проблемы
-### Не скачиваются артефакты
-1. Попробовать почистить каталог $HOME/.gradle. Файлы gradle-truststore.jks и gradle.properties удалять не нужно.
-2. Попробовать после чистки переоткрыть IDE, завершить процессы gradle или перезагрузить компьютер
 
 # Автономная работа FVM
 ## Офлайн установка FVM
