@@ -65,6 +65,13 @@
 7. Перейдите в http://localhost:8082/projects/new#import_project и импортируйте https://github.com/flutter/flutter.git как public-репозиторий
 
 # Автономная установка и настройка Flutter на клиенте с Linux/macOS
+## Установка зависимостей (только Linux)
+Пример для Ubuntu/Mint:
+```
+sudo apt-get update -y
+sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa libc6:amd64 libstdc++6:amd64 libbz2-1.0:amd64 libncurses5:amd64 libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+```
+
 ## Настройка hosts
 1. Дописать в файл /etc/hosts привязку указанных хостов к IP сервера nginx+nexus. Пример для localhost:
 ```
