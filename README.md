@@ -144,6 +144,7 @@ export FLUTTER_GIT_URL=http://127.0.0.1:8082/root/flutter.git
 1. После настройки fvm нужно выполнить команду ```fvm global <версия flutter>```
 2. Выполнить команду flutter config --android-sdk <каталог с Android SDK>
 3. Выполнить команду flutter doctor и следовать рекомендациям, если будут найдены проблемы, связанные с Android-разработкой
+4. Выполнить команду flutter precache
 
 # Автономная установка и настройка Flutter на клиенте с Windows
 ## Настройка hosts
@@ -224,6 +225,7 @@ FLUTTER_GIT_URL=http://127.0.0.1:8082/root/flutter.git
 2. Если будет ошибка, что у текущего пользователя недостаточно прав, повторно открыть консоль с правами администратора и повторить попытку
 3. Выполнить команду flutter config --android-sdk <каталог с Android SDK>
 4. Выполнить команду flutter doctor и следовать рекомендациям, если будут найдены проблемы, связанные с Android-разработкой
+5. Выполнить команду flutter precache
 
 # Настройка Flutter-проектов
 В проекте в файле android/build.gradle добавить в allprojects ссылку на mobile-download-flutter-maven-proxy
