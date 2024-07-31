@@ -42,7 +42,6 @@
 |raw (proxy)    |mobile-developer-huawei-com             |https://developer.huawei.com                      |
 |raw (proxy)    |mobile-jitpack-io                       |https://jitpack.io                                |
 |raw (proxy)    |mobile-artifactory-external-vkpartner-ru|https://artifactory-external.vkpartner.ru         |
-|raw (proxy)    |mobile-mvnrepository-com                |https://mvnrepository.com                         |
 |raw (proxy)    |mobile-services-gradle-org              |https://services.gradle.org                       |
 |raw (proxy)    |mobile-repo-gradle-org                  |https://repo.gradle.org                           |
 |raw (proxy)    |mobile-jcenter-bintray-com              |https://jcenter.bintray.com                       |   
