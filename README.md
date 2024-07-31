@@ -36,7 +36,6 @@
 |---------------|----------------------------------------|--------------------------------------------------|
 |raw (proxy)    |mobile-dl-google-com                    |https://dl.google.com                             |
 |raw (proxy)    |mobile-repo-maven-apache-org            |https://repo.maven.apache.org                     |
-|raw (proxy)    |mobile-repo1-maven-org                  |https://repo1.maven.org                           |
 |raw (proxy)    |mobile-maven-google-com                 |https://maven.google.com                          |
 |raw (proxy)    |mobile-plugins-gradle-org               |https://plugins.gradle.org                        |
 |raw (proxy)    |mobile-developer-huawei-com             |https://developer.huawei.com                      |
@@ -76,13 +75,11 @@ sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa libc6:amd64 lib
 ```
 127.0.0.1   dl.google.com
 127.0.0.1   repo.maven.apache.org
-127.0.0.1   repo1.maven.org
 127.0.0.1   maven.google.com
 127.0.0.1   plugins.gradle.org
 127.0.0.1   developer.huawei.com
 127.0.0.1   jitpack.io
 127.0.0.1   artifactory-external.vkpartner.ru
-127.0.0.1   mvnrepository.com
 127.0.0.1   services.gradle.org
 127.0.0.1   repo.gradle.org
 127.0.0.1   jcenter.bintray.com
@@ -151,13 +148,11 @@ export FLUTTER_GIT_URL=http://127.0.0.1:8082/root/flutter.git
 ```
 127.0.0.1   dl.google.com
 127.0.0.1   repo.maven.apache.org
-127.0.0.1   repo1.maven.org
 127.0.0.1   maven.google.com
 127.0.0.1   plugins.gradle.org
 127.0.0.1   developer.huawei.com
 127.0.0.1   jitpack.io
 127.0.0.1   artifactory-external.vkpartner.ru
-127.0.0.1   mvnrepository.com
 127.0.0.1   services.gradle.org
 127.0.0.1   repo.gradle.org
 127.0.0.1   jcenter.bintray.com
