@@ -32,23 +32,23 @@
 
 *Примечание: Для автономной работы Flutter требуется подключить dart proxy, для этого используется самописный плагин https://github.com/npu3pak/nexus-repository-dart-2024. Это форк проекта https://github.com/groupe-edf/nexus-repository-dart, который в данный момент нормально работает с pub.dev в режиме proxy, работа других режимов не проверялась. Скомпилированный плагин уже включен в данный репозиторий.*
 
-|Тип репозитория|Имя репозитория                         | Remote storage                          |
-|---------------|----------------------------------------|-----------------------------------------|
-|raw (proxy)    |mobile-dl-google-com                    |https://dl.google.com                    |
-|raw (proxy)    |mobile-repo-maven-apache-org            |https://repo.maven.apache.org            |
-|raw (proxy)    |mobile-repo1-maven-org                  |https://repo1.maven.org                  |
-|raw (proxy)    |mobile-maven-google-com                 |https://maven.google.com                 |
-|raw (proxy)    |mobile-plugins-gradle-org               |https://plugins.gradle.org               |
-|raw (proxy)    |mobile-developer-huawei-com             |https://developer.huawei.com             |
-|raw (proxy)    |mobile-jitpack-io                       |https://jitpack.io                       |
-|raw (proxy)    |mobile-artifactory-external-vkpartner-ru|https://artifactory-external.vkpartner.ru|
-|raw (proxy)    |mobile-mvnrepository-com                |https://mvnrepository.com                |
-|raw (proxy)    |mobile-services-gradle-org              |https://services.gradle.org              |
-|raw (proxy)    |mobile-repo-gradle-org                  |https://repo.gradle.org                  |
-|raw (proxy)    |mobile-jcenter-bintray-com              |https://jcenter.bintray.com              |   
-|raw (proxy)    |mobile-flutter-storage-proxy            |https://storage.flutter-io.cn            |
-|dart (proxy)   |mobile-dart-proxy                       |https://pub.dev                          |
-|maven2 (proxy) |mobile-download-flutter-maven-proxy     |http://download.flutter.io               |
+|Тип репозитория|Имя репозитория                         | Remote storage                                   |
+|---------------|----------------------------------------|--------------------------------------------------|
+|raw (proxy)    |mobile-dl-google-com                    |https://dl.google.com                             |
+|raw (proxy)    |mobile-repo-maven-apache-org            |https://repo.maven.apache.org                     |
+|raw (proxy)    |mobile-repo1-maven-org                  |https://repo1.maven.org                           |
+|raw (proxy)    |mobile-maven-google-com                 |https://maven.google.com                          |
+|raw (proxy)    |mobile-plugins-gradle-org               |https://plugins.gradle.org                        |
+|raw (proxy)    |mobile-developer-huawei-com             |https://developer.huawei.com                      |
+|raw (proxy)    |mobile-jitpack-io                       |https://jitpack.io                                |
+|raw (proxy)    |mobile-artifactory-external-vkpartner-ru|https://artifactory-external.vkpartner.ru         |
+|raw (proxy)    |mobile-mvnrepository-com                |https://mvnrepository.com                         |
+|raw (proxy)    |mobile-services-gradle-org              |https://services.gradle.org                       |
+|raw (proxy)    |mobile-repo-gradle-org                  |https://repo.gradle.org                           |
+|raw (proxy)    |mobile-jcenter-bintray-com              |https://jcenter.bintray.com                       |   
+|raw (proxy)    |mobile-flutter-storage-proxy            |https://storage.flutter-io.cn                     |
+|dart (proxy)   |mobile-dart-proxy                       |https://pub.dev                                   |
+|maven2 (proxy) |mobile-download-flutter-maven-proxy     |https://storage.googleapis.com/download.flutter.io|
 
 ## Настройка git-репозитория
 Для автономной работы FVM при установке новых версий Flutter потребуется указать кастомный git-репозиторий Flutter.
