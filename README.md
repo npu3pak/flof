@@ -28,7 +28,7 @@
 2. Зайти от админа. Временный пароль будет сгенерирован в ./nexus-data/admin.password.
 3. Добавить указанные репозитории
 
-*Совет: Пепед сохранением репозиториев рекомендуется нажимать кнопку View certificate, чтобы проверить доступность сервера. Если сертификат не скачивается или ненадежен, то надо или обновить таблицу IP в extra_hosts в compose.yaml или убедиться что имя и url введены правильно (без пробелов в конце и т.п.)*
+*Совет: Перед сохранением репозиториев рекомендуется нажимать кнопку View certificate, чтобы проверить доступность сервера. Если сертификат не скачивается или ненадежен, то надо или обновить таблицу IP в extra_hosts в compose.yaml или убедиться что имя и url введены правильно (без пробелов в конце и т.п.)*
 
 *Примечание: Для автономной работы Flutter требуется подключить dart proxy, для этого используется самописный плагин https://github.com/npu3pak/nexus-repository-dart-2024. Это форк проекта https://github.com/groupe-edf/nexus-repository-dart, который в данный момент нормально работает с pub.dev в режиме proxy, работа других режимов не проверялась. Скомпилированный плагин уже включен в данный репозиторий.*
 
@@ -228,7 +228,7 @@ FLUTTER_GIT_URL=http://127.0.0.1:8082/root/flutter.git
 5. Выполнить команду flutter precache
 
 # Настройка Flutter-проектов
-В проекте в файле android/build.gradle добавить в allprojects ссылку на mobile-download-flutter-maven-proxy
+В проекте в файле android/build.gradle последним пунктом добавить в allprojects ссылку на mobile-download-flutter-maven-proxy
 ```
 allprojects {
     repositories {
@@ -237,7 +237,6 @@ allprojects {
             url 'http://127.0.0.1:8081/repository/mobile-download-flutter-maven-proxy/'
             allowInsecureProtocol = true
         }
-        ...
     }
 }
 ```
@@ -268,3 +267,24 @@ rootProject.allprojects {
             }
 }
 ```
+### Проекты очень долго собираются
+В android/build.gradle нужно убедиться, что репозиторий mobile-download-flutter-maven-proxy является последним пунктом в списке.
+
+### В релизных сборках ошибка на шаге ":app:uploadCrashlyticsMappingFileInternalRelease"
+Описание ошибки примерно следующее:
+```
+Execution failed for task ':app:uploadCrashlyticsMappingFileInternalRelease'.
+> javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+```
+
+Можно отключить отгрузку mapping-файлов crashlytics в android/app/build.gradle
+```
+productFlavors {
+        yourFlavorName {
+            firebaseCrashlytics {
+                mappingFileUploadEnabled false
+            }
+        }
+    }
+```
+Описание: https://firebase.google.com/docs/crashlytics/get-deobfuscated-reports?platform=android
